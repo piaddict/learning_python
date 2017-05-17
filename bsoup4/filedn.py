@@ -1,10 +1,8 @@
 import os
+import traceback
 from urllib.request import urlopen, urlretrieve
 
 from bs4 import BeautifulSoup
-
-downloadDir = "downloaded"
-baseUrl = "http://www.pythonscraping.com"
 
 
 def getAbsURL(baseUrl, source):
@@ -17,36 +15,38 @@ def getAbsURL(baseUrl, source):
         url = "http://" + source
     else:
         url = baseUrl + "/" + source
-
-    if baseUrl not in url:
-        return None
-
+    # if baseUrl not in url:
+    #     return None
+    print("absURL은 : " + url)
     return url
 
 
 def getDownloadPath(baseUrl, absoluteUrl, downloadDir):
     try:
-        path = absoluteUrl.replace("www", "")
-        path = path.replace(baseUrl, "")
-        path = downloadDir + path
+        path = absoluteUrl
+        path = path.replace(baseUrl.replace("www.", ""), "")
+        path = path.replace("http:", "")
+        path = path[:path.find("?")]
+        path = downloadDir + "/" + path
+        print("경로는 : " + path)
     except:
-        return downloadDir + "except"
-
+        traceback.print_exc()
+        return downloadDir + "/" + "except"
     directory = os.path.dirname(path)
     if not os.path.exists(directory):
         os.makedirs(directory)
     return path
 
 
-# -*- main -*-
+if __name__ == "__main__":
+    downloadDir = "downloaded"
+    baseUrl = "http://www.pythonscraping.com"
+    html = urlopen(baseUrl)
+    bsObj = BeautifulSoup(html, "html.parser")
+    downloadList = bsObj.findAll(src=True)
 
-html = urlopen(baseUrl)
-bsObj = BeautifulSoup(html, "html.parser")
-downloadList = bsObj.findAll(src=True)
-
-for download in downloadList:
-    fileUrl = getAbsURL(baseUrl, download["src"])
-    if fileUrl is not None:
-        print(fileUrl)
-
-urlretrieve(fileUrl, getDownloadPath(baseUrl, fileUrl, downloadDir))
+    for download in downloadList:
+        print(download["src"])
+        fileUrl = getAbsURL(baseUrl, download["src"])
+        downPath = getDownloadPath(baseUrl, fileUrl, downloadDir)
+        urlretrieve(fileUrl, downPath)

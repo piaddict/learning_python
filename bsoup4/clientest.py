@@ -23,9 +23,9 @@ def getData(url):
 
 
 def setData(data):
-    conn = pymysql.connect(host="localhost", user="crawl",
-                           password="crawl", db="crawl", charset="utf8")
     try:
+        conn = pymysql.connect(
+            host="localhost", user="crawl", password="crawl", db="crawl", charset="utf8")
         curs = conn.cursor()
         sql = "insert into clien(title, author) values(%s, %s)"
         # execute만 반복가능
@@ -39,6 +39,10 @@ def setData(data):
 
 
 if __name__ == "__main__":
-    for num in range(0, 5):
-        url = "https://www.clien.net/service/board/park?&od=T31&po=" + str(num)
-        setData(getData(url))
+    try:
+        for num in range(5):
+            url = "https://www.clien.net/service/board/park?&od=T31&po=" + \
+                str(num)
+            setData(getData(url))
+    except (KeyboardInterrupt, SystemExit):
+        pass
