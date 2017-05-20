@@ -1,7 +1,7 @@
 // 설정을 이 파일에 넣어서 기본 설정과 사용자 설정을 덮어씁니다.
 {
-  // "python.pythonPath": "../.myenv/bin/python",
-  "python.pythonPath": "..\\.myenv_win\\Scripts\\python",
+  "python.pythonPath": "../.myenv/bin/python",
+  // "python.pythonPath": "..\\.myenv_win\\Scripts\\python",
   "python.venvPath": "../.myenv, ../.myenv_win",
   "python.autoComplete.extraPaths": [
     "../.myenv/lib64/python3.5/site-packages",
