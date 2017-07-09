@@ -2,7 +2,7 @@ def find_outlier(integers):
     odds = list()
     evens = list()
     for x in integers:
-        if x%2==1:
+        if x % 2 == 1:
             odds.append(x)
         else:
             evens.append(x)
@@ -13,4 +13,4 @@ def find_outlier(integers):
         return evens[0]
 
 
-print(find_outlier([2,6,8,10,3]))
+print(find_outlier([2, 6, 8, 10, 3]))
