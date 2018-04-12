@@ -1,17 +1,36 @@
-from urllib import parse
-from urllib.request import urlopen
+# -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+import os
+import requests
 from bs4 import BeautifulSoup
 
+def crawl_naver_webtoon(EPISODE_URL):
+    html = requests.get(EPISODE_URL).text
+    soup = BeautifulSoup(html, 'html.parser')
 
-def getLinks(articleUrl):
-    url = "http://ko.wikipedia.org" + articleUrl
-    html = urlopen(url)
-    bsObj = BeautifulSoup(html, "html.parser")
-    return bsObj.find("div", {"id": "bodyContent"}).findAll("a", href=re.compile("^(/wiki/)((?!:).)*$"))
+    comic_title = ' '.join(soup.select('.comicinfo h2')[0].text.split())
+    ep_title = ' '.join(soup.select('.tit_area h3')[0].text.split())
 
+    for img_tag in soup.select('.wt_viewer img'):
+        image_file_url = img_tag['src']
+        image_dir_path = os.path.join(
+            os.path.dirname(__file__), comic_title, ep_title)
+        image_file_path = os.path.join(
+            image_dir_path, os.path.basename(image_file_url))
 
-links = getLinks(parse.quote("/wiki/케빈_베이컨", ":/"))
-while len(links) > 0:
-    newArticle = links[random.randint(0, len(links) - 1)].attrs["href"]
-    print(newArticle)
-    links = getLinks(newArticle)
+        if not os.path.exists(image_dir_path):
+            os.makedirs(image_dir_path)
+
+        print(image_file_path)
+
+        headers = {'Referer': EPISODE_URL}
+        image_file_data = requests.get(
+            image_file_url, headers=headers).content
+        open(image_file_path, 'wb').write(image_file_data)
+
+    print('Completed !')
+
+if __name__ == '__main__':
+    EPISODE_URL = 'http://comic.naver.com/webtoon/detail.nhn?titleId=20853&no=1048&weekday=tue'
+    crawl_naver_webtoon(EPISODE_URL)

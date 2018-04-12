@@ -1,6 +1,6 @@
 // 설정을 이 파일에 넣어서 기본 설정과 사용자 설정을 덮어씁니다.
 {
-  "python.pythonPath": "${workspaceRoot}/.myenv/bin/python3",
+  "python.pythonPath": "${workspaceFolder}\\.myenv_win\\Scripts\\python.exe",
   "python.venvPath": ".myenv, .myenv_win",
   "python.autoComplete.extraPaths": [
     ".myenv/lib/python3.5/site-packages",
