@@ -1,1 +1,1 @@
-& ".myenv_win\Scripts\activate.ps1"
+& ".venvw\Scripts\activate.ps1"

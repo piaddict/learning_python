@@ -1,1 +1,1 @@
-cd .myenv_win\Scripts\ && .\activate && cd ..\..\python_practice\
+cd .venvw\Scripts\ && .\activate && cd ..\..\

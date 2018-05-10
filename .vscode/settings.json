@@ -1,10 +1,10 @@
 // 설정을 이 파일에 넣어서 기본 설정과 사용자 설정을 덮어씁니다.
 {
-  "python.pythonPath": "${workspaceFolder}\\.myenv_win\\Scripts\\python.exe",
+  "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
   "python.venvPath": ".myenv, .myenv_win",
   "python.autoComplete.extraPaths": [
-    ".myenv/lib/python3.5/site-packages",
-    ".myenv_win/Lib/site-packages"
+    ".venv/lib/python3.6/site-packages",
+    ".venvw/Lib/site-packages"
   ],
   "python.linting.enabled": true
 }
