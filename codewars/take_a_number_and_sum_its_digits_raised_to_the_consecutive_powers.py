@@ -11,3 +11,12 @@ def sum_dig_pow(a, b):
         num = list(int(x) for x in str(i))
         if i == calc_sum(num): result.append(i)
     return result
+
+
+# best practice
+
+def filter_func(a):
+    return sum(int(d) ** (i+1) for i, d in enumerate(str(a))) == a
+
+def better_sum_dig_pow(a, b):
+    return filter(filter_func, range(a, b+1))
