@@ -1,28 +1,28 @@
-def binary_search(list, target):
+def binary_search(dlist, target):
     left = 0
-    right = len(list) - 1
+    right = len(dlist) - 1
     while (left <= right):
         mid = (left + right) // 2
-        if (list[mid] == target):
+        if (dlist[mid] == target):
             return mid
-        elif (list[mid] < target):
+        elif (dlist[mid] < target):
             left = mid + 1
         else:
             right = mid - 1
     return None
 
-def binary_search_recursion(list, target, left, right):
+def binary_search_recursion(dlist, target, left, right):
     if (left > right): return None
     mid = (left + right) // 2
 
-    if (list[mid] == target):
+    if (dlist[mid] == target):
         return mid
-    elif (list[mid] < target):
+    elif (dlist[mid] < target):
         left = mid + 1
     else:
         right = mid - 1
 
-    return binary_search_recursion(list, target, left, right)
+    return binary_search_recursion(dlist, target, left, right)
 
 slist = [7, 15, 22, 30, 35, 40, 44, 55, 88]
 print(binary_search(slist, 44))
