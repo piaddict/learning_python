@@ -10,12 +10,14 @@
 
 # 주의: 앞자리 0의 개수는 유지되어야 함
 
+
 def increment_string(strng):
     rstrng = list(strng)
     rstrng.reverse()
     idx = 0
     for idx, c in enumerate(rstrng):
-        if not c.isnumeric(): break
+        if not c.isnumeric():
+            break
     nums = strng[-idx:]
     if idx == 0 and len(nums) != 1:
         return strng + "1"
@@ -29,8 +31,10 @@ def increment_string(strng):
 def better_increment_string(strng):
     head = strng.rstrip('0123456789')
     tail = strng[len(head):]
-    if tail == "": return strng+"1"
+    if tail == "":
+        return strng+"1"
     return head + str(int(tail) + 1).zfill(len(tail))
+
 
 def test():
     assert increment_string("foobar23") == "foobar24"

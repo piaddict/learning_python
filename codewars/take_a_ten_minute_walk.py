@@ -4,11 +4,13 @@
 
 from collections import Counter
 
+
 def isValidWalk(walk):
     direction = {'n': 0, 's': 0, 'e': 0, 'w': 0}
     for block in walk:
         direction[block] += 1
     return True if (direction['n'] == direction['s'] and direction['e'] == direction['w'] and len(walk) == 10) else False
+
 
 def better_isValidWalk(walk):
     direction = Counter(walk)

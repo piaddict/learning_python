@@ -4,6 +4,7 @@
 # [10, 343445353, 3453445, 3453545353453] should return 3453455.
 # Hint: Do not modify the original array.
 
+
 def sum_two_smallest_numbers(numbers):
     numbers.sort()
     return numbers[0] + numbers[1]

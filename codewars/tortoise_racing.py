@@ -5,6 +5,8 @@
 # If v1 >= v2 then return nil, nothing, null, None or {-1, -1, -1} for C++, C, Go, Nim, [] for Kotlin.
 
 # feet per hour
+
+
 def race(v1, v2, g):
     if v1 >= v2:
         return None

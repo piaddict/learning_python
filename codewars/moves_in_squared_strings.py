@@ -12,10 +12,10 @@
 # hor_mirror(s) => "mnop\nijkl\nefgh\nabcd"
 # or printed:
 
-# vertical mirror   |horizontal mirror   
-# abcd --> dcba     |abcd --> mnop 
-# efgh     hgfe     |efgh     ijkl 
-# ijkl     lkji     |ijkl     efgh 
+# vertical mirror   |horizontal mirror
+# abcd --> dcba     |abcd --> mnop
+# efgh     hgfe     |efgh     ijkl
+# ijkl     lkji     |ijkl     efgh
 # mnop     ponm     |mnop     abcd
 # #Task:
 
@@ -31,15 +31,18 @@
 # oper(vert_mirror, s) => "dcba\nhgfe\nlkji\nponm"
 # oper(hor_mirror, s) => "mnop\nijkl\nefgh\nabcd"
 
+
 def vert_mirror(strng):
     result = list()
     for word in strng:
         result.append(''.join(reversed(word)))
     return result
 
+
 def hor_mirror(strng):
     strng.reverse()
     return strng
+
 
 def oper(fct, s):
     return "\n".join(fct(s.splitlines()))
