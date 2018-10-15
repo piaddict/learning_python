@@ -1,3 +1,3 @@
-# learning_python
+# learning-python
 
-파이썬 공부를 위한 개인자료
+Python Playground
