@@ -1,4 +1,4 @@
-# learning-python
+# python-playground
 
 Python Playground
 
